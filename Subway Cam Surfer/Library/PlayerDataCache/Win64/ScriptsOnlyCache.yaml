@@ -283,7 +283,7 @@ ScriptsOnlyBuild:
     className: GameManager
   - hash:
       serializedVersion: 2
-      Hash: 8f85e70609cfc954b8c3d77d53a7e3fb
+      Hash: 319b20f6aaa3e178fac6d5052aef8a97
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: PlayerMovement
@@ -711,5 +711,5 @@ ScriptsOnlyBuild:
   scenePathNames:
   - Assets/Scenes/MainMenu.unity
   - Assets/Scenes/SampleScene.unity
-  playerPath: C:/Users/SWASTIK/Desktop/Kan Innovations/Subway Cam Surfer/Exe/Subway
+  playerPath: C:/Users/SWASTIK/Desktop/Kan Innovations/SubwaySurfer/Subway Cam Surfer/Exe/Subway
     Cam Surfer.exe

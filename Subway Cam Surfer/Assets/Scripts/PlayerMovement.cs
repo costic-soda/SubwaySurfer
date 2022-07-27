@@ -73,6 +73,10 @@ public class PlayerMovement : MonoBehaviour
 
     public GameObject gameOverPanel;
 
+    private float crouchThreshold;
+    public bool thresholdSet = false;
+    public float crouchThresholdOffset = 0.5f;
+
 
     // Start is called before the first frame update
     void Start()
@@ -84,8 +88,8 @@ public class PlayerMovement : MonoBehaviour
         capsuleCollider = GetComponent<CapsuleCollider>();
         transform.position = Vector3.zero;
         float camX;
-        bool isCamNull = float.TryParse(Globals.Variables.camX, out camX);
-        temp = camX;
+        //bool isCamNull = float.TryParse(Globals.Variables.camX, out camX);
+        //temp = camX;
 
         //placeObstacles();
         //Application.runInBackground = true;
@@ -570,8 +574,13 @@ public class PlayerMovement : MonoBehaviour
             }
         }
 
-
-        if (float.Parse(Globals.Variables.camValues[1]) > 250f)
+        if (Globals.Variables.LEFT_SHOULDER[1] != "" && !thresholdSet)
+        {
+            crouchThreshold = (float.Parse(Globals.Variables.LEFT_HIP[1]) + float.Parse(Globals.Variables.LEFT_SHOULDER[1])) / 2f;
+            crouchThreshold += crouchThresholdOffset;
+            thresholdSet = true;
+        }
+        if (float.Parse(Globals.Variables.LEFT_SHOULDER[1]) < crouchThreshold)
         {
             //if (camX > 50)
             //{
@@ -579,12 +588,17 @@ public class PlayerMovement : MonoBehaviour
             //if (SwipeDown)
             //{
 
-            matData.text = "MatX: " + matX + " MatY: " + matY + " CamValues: " + float.Parse(Globals.Variables.camValues[1]);
+            matData.text = "MatX: " + Globals.Variables.matX + " MatY: " + Globals.Variables.matY + "\nleft shoouldet " + float.Parse(Globals.Variables.LEFT_SHOULDER[1]) + "\nleft hip: " + float.Parse(Globals.Variables.LEFT_HIP[1]) + "\ncrouvchg thresghold:" + crouchThreshold;
 
 
             capsuleCollider.height = 3.5f;
             anim.Play("crouchRun2");
 
+        }
+        else if (matY < 26)
+        {
+            SwipeUp = true;
+            Jump();
         }
 
         else
